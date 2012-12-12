@@ -163,10 +163,11 @@ static NSDictionary *allVariables;
             self.display.text = [NSString stringWithFormat:@"%@", [NSNumber numberWithDouble:result]];
         }
         @catch (NSException *exception) {
-            self.display.text = [NSString stringWithFormat:@"ERROR: %@", [exception debugDescription]];
             self.userIsEnteringNumber = false;
             [self.brain discardLastOperand];
             [self runProgram];
+            // Display the ERROR after running the program, because running the program changes the display
+            self.display.text = [NSString stringWithFormat:@"ERROR: %@", [exception debugDescription]];
         }
     }
 }
